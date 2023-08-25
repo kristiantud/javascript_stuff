@@ -94,7 +94,7 @@ function addTodo(newTodo){
 
 // THIS WILL CAUSE REACT TO CHANGE SINCE WE ARE CHANGING/MUTATING THE ARRAY
 
-//THE RIGHT WAY:
+//THE "RIGHT" WAY:
 function addTodo2(newTodo){
     return [...todos, {...newTodo, completed:false}]
 }
