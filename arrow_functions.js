@@ -98,3 +98,60 @@ console.log(me2.whatsThis); // {window: Window, self: Window, document: document
 
 // in objects, this refers to Window and not the object, so when we use arrow function in object,
 // we are referring to "this" as the window
+// objects don't create binding with "this", functions do
+
+// benefits?
+const me3 = {
+    name: 'Kristian',
+    talk: function() {
+        setTimeout(() => {
+            console.log(this.name);
+        },100)
+    }
+}
+
+me3.talk();
+// since talk is a normal funciton, even though setTimeout uses an arrow function to call "this",
+// it returns the name 'Kristian' because me3.talk() is bound to the m3 object
+
+// -------------- //
+// for constructors 
+function Person(n) {
+    this.name = n;
+}
+
+Person.prototype.talk = function() {
+    return this;
+}
+
+Person.prototype.arrowTalk = () => {
+    return this;
+}
+
+const me4 = new Person('Kristian');
+console.log(me4.talk());
+console.log(me4.arrowTalk());
+
+// callback functions: functions passed as parameter to another function
+// when adding function to a DOM element for example, we want to avoid using arrow function because
+// if we were to refer to this DOM element with "this" in an arrow function, "this" will not be bound to 
+// the DOM element, so it would refer to the Window as we saw earlier. 
+
+function outer1 (callback, obj) {
+    callback(obj);
+}
+
+function outer2 (callback, obj) {
+    callback.call(obj);
+}
+
+function inner (){
+    console.log(this);
+}
+
+outer1(inner, {name: 'Kristian'}); // Window
+outer2(inner, {name: 'Kristian'}); // Person
+
+// the second one works because the .call() function binds the object to the inner function, 
+// so that when the inner function calls "this", it is referring to the object
+
