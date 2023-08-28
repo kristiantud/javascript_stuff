@@ -75,3 +75,26 @@ const me = {
 me.hello();
 me.hello2();
 
+// -------------------- // 
+// benefits: 
+// - aesthetics
+// - scope (this) changes
+
+const me2 = {
+    name: "Kristian",
+    talk: function() {
+        console.log(this);
+    },
+    talk2: () => {
+        console.log(this);
+    },
+    whatsThis: this
+}
+
+me2.talk(); // {name: 'Kristian', talk: ƒ, talk2: ƒ}
+me2.talk2(); // Window {window: Window, self: Window, document: document, name: '', location: Location, …}
+
+console.log(me2.whatsThis); // {window: Window, self: Window, document: document, name: '', location: Location, …}
+
+// in objects, this refers to Window and not the object, so when we use arrow function in object,
+// we are referring to "this" as the window
