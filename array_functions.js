@@ -35,3 +35,40 @@ letters.forEach(item => {
 })
 
 console.log(count); // {a: 2, b: 2, c: 1, e: 1}
+
+const firstWord = ['h','e','l','l','o'];
+const secondWord = ['o','l','l','e','h'];
+
+let firstCount = {};
+let secondCount = {};
+
+firstWord.forEach(i => {
+    if (firstCount[i]){
+        firstCount[i]++;
+    } else {
+        firstCount[i] = 1;
+    }
+})
+
+secondWord.forEach(i => {
+    if(secondCount[i]) {
+        secondCount[i]++;
+    } else {
+        secondCount[i] = 1;
+    }
+})
+
+console.log(firstCount);
+console.log(secondCount);
+const validPalindrome = true;
+
+for (const letter of Object.keys(firstCount)){
+    // check for the keys values in secondCount
+    if (!secondCount[letter] === firstCount[letter]){
+        validPalindrome = false;
+    }
+}
+
+if (validPalindrome){
+    console.log(firstWord + " and " + secondWord + " are palindromes!");
+}
