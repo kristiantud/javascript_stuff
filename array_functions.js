@@ -154,3 +154,55 @@ const totalProductObjects = products.map(item =>
 );
 console.log(totalProductObjects);
 
+// filter()
+const numbers3 = [1,2,3,4,5,6];
+
+const even = numbers3.filter(isEven);
+
+function isEven(value){
+    return value % 2 == 0
+}
+
+console.log(even); // [2,4,6]
+// how is this different from map()?
+const evenMap = numbers3.map(isEven);
+console.log(evenMap);// [false, true, false, true, false, true]
+
+// map still iterates, but the return value for value % 2 == 0 is boolean
+// so i think that filter basically takes the return value that is true and puts it in the array.
+const dogs = [
+    {
+        name: 'apollo',
+        age: 8
+    }, 
+    {
+        name: 'nala',
+        age: 9
+    },
+    {
+        name: 'kilo',
+        age: 2
+    }
+]
+const oldDog = dogs.filter(dog => dog.age > 5);
+console.log(oldDog);
+// 0 : {name: 'apollo', age: 8}
+// 1 : {name: 'nala', age: 9}
+
+// to remove duplicate values
+const numbers4 = [1,2,3,1,2,3,1,2,3,4,5];
+const noDupes = numbers4.filter((num, index) => numbers4.indexOf(num) === index);
+
+console.log(noDupes); // [1,2,3,4,5]
+// for callback functions, if just one parameter, then we can remove parentheses.
+// otherwise, include -> (num, index)
+
+
+
+
+
+
+
+
+
+
