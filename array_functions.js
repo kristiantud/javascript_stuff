@@ -198,11 +198,61 @@ console.log(noDupes); // [1,2,3,4,5]
 // otherwise, include -> (num, index)
 
 
+// reduce()
+// reduce takes a callback and an initial value, reduce(callback, initVal)
+// callback() is different here because the first param becomes the initVal
+// callback(initVal,current, index, arr)
+// after the first index, the value stops being initVal, but becomes its own value whatever the 
+// user gives it.
+// first iteration : 0 + 1 returned
+// second iteration : 1 + 2 returned
 
+const numbersReduce = [1,2,3,4,5];
 
+const total = numbersReduce.reduce(sumReduce, 0);
 
+function sumReduce(accumulator, value, index, array){
+    return accumulator + value;
+}
 
+console.log(total); // 15
 
+const max = numbersReduce.reduce(callback,-Infinity);
 
+function callback(accumulator, currentVal){
+    if (currentVal > accumulator){
+        return currentVal;
+    } else {
+        return accumulator;
+    }
+}
 
+console.log(max);
 
+// first iteration: 1 > -Infinity, so return 1
+// second iteration: 2 > 1, so return 2
+
+const store = [
+    {
+        product: 'laptop',
+        value: 1000,
+        count: 3
+    },
+    {
+        product: 'desktop',
+        value: 1500,
+        count: 4
+    },
+    {
+        product: 'mobile',
+        value: 500,
+        count: 10
+    }
+]
+
+const totalValueStore = store.reduce((accumulator, item) => accumulator + (item.value * item.count), 0);
+console.log(totalValueStore);
+
+// callback has acc, item
+// the next parameter is the initial value
+// add the acc to the current item's total value so that accumulator's new value is returned to be used by the next step
