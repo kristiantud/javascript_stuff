@@ -256,3 +256,24 @@ console.log(totalValueStore);
 // callback has acc, item
 // the next parameter is the initial value
 // add the acc to the current item's total value so that accumulator's new value is returned to be used by the next step
+
+// sort() 
+const names = ['Florin', 'Liam', 'Jai','Ivan'];
+const numbersSort = [18,25,23,87,29,185];
+
+names.sort();
+console.log(names);
+// numbersSort.sort();
+// console.log(numbersSort); // [18, 185, 23, 25, 29, 87]
+// this is because sort converts the int to string first
+
+function compareFunction(a,b){
+    return a-b;
+}
+
+numbersSort.sort(compareFunction);
+console.log(numbersSort);
+
+// how does this process work iteratively?? 
+// isn't comparing a and b and switching spots just sorting two things? 
+// look into this more
