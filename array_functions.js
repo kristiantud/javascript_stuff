@@ -76,3 +76,81 @@ if (validPalindrome){
 } else {
     console.log(`${firstWord} and ${secondWord} are not valid palindromes.`);
 }
+
+
+// difference between for-of and for-in
+const someArray = [3,4,5];
+
+for (let x in someArray){
+    console.log(x); // 0 1 2
+}
+
+for (let x of someArray){
+    console.log(x); // 3 4 5
+}
+
+// basically, for-of has its own iterator, and so it is able to grab the values of the array instead of just starting at 0 and iterating
+
+// map function
+// what i sthe difference between forEach() and map()?
+// forEach will not return a new array
+// map will return a new array
+// map is used to manipulate data in the array and then returns the manipulated data
+// forEach simply just iterates the array
+const numbers2 = [1,2,3,4,5];
+
+numbers2.map(double);
+
+
+function double(curr,index,arr) {
+    
+    return curr * 2;
+}
+
+const numbers2Doubled = numbers2.map(double);
+
+console.log(numbers2Doubled);
+
+const products = [
+    {
+        name: 'laptop',
+        price: 1000,
+        count: 5,
+
+    },
+    {
+        name: 'desktop',
+        price: 1500,
+        count: 2,
+
+    },
+    {
+        name: 'phone',
+        price: 500,
+        count: 15,
+
+    }
+
+]
+
+const totalProductsValue = products.map(item => item.price*item.count);
+console.log(totalProductsValue); //[5000, 3000, 7500]
+
+// pretty much, item (or any value as first parameter) becomes the "main/current" value, 
+// kind of like when we use for-of
+// item => item.price * item.count is the same as
+// function (item) { return item.price * item.count}
+// only in this case, since map returns an array, the value is returned as the value of whatever 
+// index the iterator was in
+// so, if i understand this currectly, if i were to use forEach, it wouldn't work
+const totalProductsForEach = products.forEach(item => item.price*item.count);
+console.log(totalProductsForEach); // undefined
+
+// if we want to create objects instead: 
+const totalProductObjects = products.map(item => 
+    ({
+        'name': item.name, 'total': item.price*item.count,
+    })
+);
+console.log(totalProductObjects);
+
